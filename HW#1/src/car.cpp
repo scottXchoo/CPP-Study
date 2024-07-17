@@ -1,7 +1,8 @@
 #include <utility>
 #include <random>
-#include "../include/car.h"
-#include "../include/utils.h"
+
+#include "car.h"
+#include "utils.h"
 #include "car_config.h"
 
 Car::Car(std::string name, std::string rider, std::string engine, std::string wheel)
@@ -11,18 +12,18 @@ Car::Car(std::string name, std::string rider, std::string engine, std::string wh
 	  wheel(std::move(wheel)),
 	  position(0),
 	  totalMovingDistance(0),
-	  isRide(false) {} // bool ride라는 필드를 두고 isRide(getter)를 메서드로 변경
+	  ride(false) {}
 
 void Car::move() {
-  if (!isRide) return;
+  if (!ride) return;
 
-  int distance = generateRandomNumber(minRandomNumber, maxRandomNumber);  // Magic numer 처리
+  int distance = generateRandomNumber(minRandomNumber, maxRandomNumber);
   position += distance;
   totalMovingDistance += std::abs(distance);
 }
 
-void Car::setIsRide(bool ride) {
-  isRide = ride;
+bool Car::getRide() const {
+  return ride;
 }
 
 std::string Car::getRider() const {

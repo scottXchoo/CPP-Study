@@ -8,8 +8,10 @@ class Car {
   // Car에 Person을 태우기 : rider
   Car(std::string name, std::string rider, std::string engine, std::string wheel);
 
+  bool ride;
+
   void move();
-  void setIsRide(bool ride);
+  bool getRide() const;
 
   [[nodiscard]] std::string getRider() const;
   [[nodiscard]] std::string getName() const;
@@ -28,7 +30,6 @@ class Car {
   std::string wheel;
   int position;
   int totalMovingDistance;
-  bool isRide;
 };
 
 #endif // CAR_H

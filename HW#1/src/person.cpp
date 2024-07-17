@@ -8,9 +8,8 @@ Person::Person(std::string name) : name(std::move(name)), car(nullptr) {}
 // 소유권 이전 ?!?
 
 void Person::assignCar(Car &assigned_car) {
-  // 웬만하면 this 붙이기!
   this->car = &assigned_car;
-  this->car->setIsRide(true);
+  this->car->ride = true;
 }
 
 Person::~Person() = default;
