@@ -18,5 +18,7 @@ const CarConfig carConfigs[] = {
 
 const int carCount = 3;
 const int testNumber = 5;
+const int minRandomNumber = -10;
+const int maxRandomNumber = 100;
 
 #endif // CAR_CONFIG_H_

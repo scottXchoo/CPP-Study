@@ -2,6 +2,7 @@
 #include <random>
 #include "../include/car.h"
 #include "../include/utils.h"
+#include "car_config.h"
 
 Car::Car(std::string name, std::string rider, std::string engine, std::string wheel)
 	: name(std::move(name)),
@@ -12,11 +13,10 @@ Car::Car(std::string name, std::string rider, std::string engine, std::string wh
 	  totalMovingDistance(0),
 	  isRide(false) {} // bool ride라는 필드를 두고 isRide(getter)를 메서드로 변경
 
-// 의존성이 있으면, 그 순서대로 맞추기 = 술술 읽히도록!
 void Car::move() {
-  if (!isRide) return;  // Early return
+  if (!isRide) return;
 
-  int distance = generateRandomNumber(-10, 100);  // Magic numer 처리
+  int distance = generateRandomNumber(minRandomNumber, maxRandomNumber);  // Magic numer 처리
   position += distance;
   totalMovingDistance += std::abs(distance);
 }
