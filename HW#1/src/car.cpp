@@ -9,7 +9,7 @@ Car::Car(std::string name, std::string rider, std::string engine, std::string wh
 	  engine(std::move(engine)),
 	  wheel(std::move(wheel)),
 	  position(0),
-	  totalDist(0),
+	  totalMovingDistance(0),
 	  isRide(false) {} // bool ride라는 필드를 두고 isRide(getter)를 메서드로 변경
 
 // 의존성이 있으면, 그 순서대로 맞추기 = 술술 읽히도록!
@@ -18,7 +18,7 @@ void Car::move() {
 
   int distance = generateRandomNumber(-10, 100);  // Magic numer 처리
   position += distance;
-  totalDist += std::abs(distance);  // totalMovingDistance :
+  totalMovingDistance += std::abs(distance);
 }
 
 void Car::setIsRide(bool ride) {
@@ -46,7 +46,7 @@ int Car::getPosition() const {
 }
 
 int Car::getTotalDist() const {
-  return totalDist;
+  return totalMovingDistance;
 }
 
 Car::~Car() = default;

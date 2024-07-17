@@ -27,7 +27,7 @@ class Car {
   std::string engine;
   std::string wheel;
   int position;
-  int totalDist;
+  int totalMovingDistance;
   bool isRide;
 };
 
