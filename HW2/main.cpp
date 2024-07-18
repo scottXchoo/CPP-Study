@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "include/Library.h"
-#include "config/config.h"
 
 void showMenu() {
   std::cout << "<Document Management Program>" << std::endl;
@@ -12,8 +11,14 @@ void showMenu() {
   std::cout << "5. Exit" << std::endl;
 }
 
-int main() {
-  Library library(documents);
+int mainController() {
+  std::vector<Document> init_documents = {
+	  Document(1, "Book", "Java Manse", "Chu", "Apple", 2013),
+	  Document(2, "E-Book", "TypeScript Manse", "Kim", "Banana", 2018),
+	  Document(3, "Thesis", "Rust Manse", "Jung", "Macdonald", 2020)
+  };
+
+  Library library(init_documents);
   int choice;
 
   while (true) {
@@ -23,7 +28,7 @@ int main() {
 	showMenu();
 
 	std::cout << "-> Enter your choice: " << std::endl;
-	std::cin >> choice;
+	std::cin >> choice;  // getline
 	std::cin.ignore();
 
 	switch (choice) {
@@ -36,9 +41,13 @@ int main() {
 	  case 4: library.deleteDocument();
 		break;
 	  case 5: std::cout << "<Exit the program>" << std::endl;
-		return 0;
+		return 0;  // return 한 것을 main에서 return 해야 됨. return 위치 잘못
 	  default: std::cout << "Invalid choice" << std::endl;
 		break;
 	}
   }
+}
+
+int main() {
+  mainController();
 }
