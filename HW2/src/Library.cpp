@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 #include "../include/Library.h"
@@ -20,7 +21,7 @@ void Library::deleteDocument() {
   for (auto it = documents.begin(); it != documents.end(); ++it) {
 	if (it->getId() == id) {
 	  std::string title = it->getTitle();
-	  documents.erase(it);
+	  documents.erase(it); // find_first_of로 수정 -> 확인!
 	  std::cout << "[" << title << "]" << " document deleted!" << std::endl;
 	}
   }
@@ -39,24 +40,30 @@ void Library::searchDocument() {
   std::cin.ignore();
 
   switch (choice) {
-	case 1: std::cout << "Enter Title to search: ";
+	case 1: {
+	  std::cout << "Enter Title to search: ";
 	  std::getline(std::cin, query);
 	  for (const auto &doc : documents) {
 		if (containsQuery(doc.getTitle(), query)) printDocument(doc);
 	  }
 	  break;
-	case 2: std::cout << "Enter Author to search: ";
+	}
+	case 2: {
+	  std::cout << "Enter Author to search: ";
 	  std::getline(std::cin, query);
 	  for (const auto &doc : documents) {
 		if (containsQuery(doc.getAuthor(), query)) printDocument(doc);
 	  }
 	  break;
-	case 3: std::cout << "Enter Publisher to search: ";
+	}
+	case 3: {
+	  std::cout << "Enter Publisher to search: ";
 	  std::getline(std::cin, query);
 	  for (const auto &doc : documents) {
 		if (containsQuery(doc.getPublisher(), query)) printDocument(doc);
 	  }
 	  break;
+	}
 	default: std::cout << "Invalid choice" << std::endl;
   }
 }
@@ -65,26 +72,20 @@ void Library::searchDocument() {
  * @brief document를 추가하는 함수
  */
 void Library::addDocument() {
-  std::string category, title, author, publisher;
+  std::string input, category, title, author, publisher;
   int published_year;
 
-  int id = static_cast<int>(documents.size()) + 1;
+  int id = static_cast<int>(documents.back().getId()) + 1;
 
-  std::cout << "Enter Category: ";
-  std::getline(std::cin, category);
+  std::cout << "Enter document details [Category-Title-Author-Publisher-Published_year]: ";
+  std::getline(std::cin, input);
 
-  std::cout << "Enter Title: ";
-  std::getline(std::cin, title);
-
-  std::cout << "Enter Author: ";
-  std::getline(std::cin, author);
-
-  std::cout << "Enter Publisher: ";
-  std::getline(std::cin, publisher);
-
-  std::cout << "Enter Published Year: ";
-  std::cin >> published_year;
-  std::cin.ignore(); // 입력 버퍼에 남은 character 제거
+  std::istringstream ss(input);
+  std::getline(ss, category, '-');
+  std::getline(ss, title, '-');
+  std::getline(ss, author, '-');
+  std::getline(ss, publisher, '-');
+  ss >> published_year;
 
   Document new_document(id, category, title, author, publisher, published_year);
   documents.push_back(new_document);
