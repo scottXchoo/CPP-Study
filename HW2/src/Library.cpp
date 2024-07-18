@@ -80,6 +80,9 @@ void Library::addDocument() {
   std::cout << "Enter document details [Category-Title-Author-Publisher-Published_year]: ";
   std::getline(std::cin, input);
 
+  // E-Book 만을 위한 예외 처리를 하는 것은 확실히 개발 신념(?)과 반대되는 것이라고 생각... But, 구현함
+  input = replaceAll(input, "E-Book", "EBook");
+
   std::istringstream ss(input);
   std::getline(ss, category, '-');
   std::getline(ss, title, '-');
