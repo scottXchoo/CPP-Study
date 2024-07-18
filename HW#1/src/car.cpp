@@ -4,15 +4,17 @@
 #include "car.h"
 #include "utils.h"
 #include "car_config.h"
+#include "person.h"
 
-Car::Car(std::string name, std::string rider, std::string engine, std::string wheel)
+Car::Car(std::string name, Person* rider, std::string engine, std::string wheel)
 	: name(std::move(name)),
-	  rider(std::move(rider)),
+	  rider(rider),
 	  engine(std::move(engine)),
 	  wheel(std::move(wheel)),
 	  position(0),
 	  totalMovingDistance(0),
 	  ride(false) {}
+Car::~Car() = default;
 
 void Car::move() {
   if (!getRide()) return;
@@ -26,7 +28,11 @@ bool Car::getRide() const {
   return ride;
 }
 
-std::string Car::getRider() const {
+void Car::setRide() {
+  this->ride = true;
+}
+
+const Person* Car::getRider() const {
   return rider;
 }
 
@@ -53,5 +59,3 @@ int Car::getTotalDist() const {
 bool operator > (const Car &car1, const Car &car2) {
   return car1.getPosition() > car2.getPosition();
 }
-
-Car::~Car() = default;

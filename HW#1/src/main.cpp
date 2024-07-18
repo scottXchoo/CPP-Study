@@ -12,7 +12,7 @@ void printCars(Car *cars[], int size) {
 
   for (int i = 0; i < size; i++) {
 	std::cout << "---------------------------" << std::endl;
-	std::cout << "[" << cars[i]->getRider() << "] \n"
+	std::cout << "[" << cars[i]->getRider()->getName() << "] \n"
 			  << " Car: " << cars[i]->getEngine() << " / " << cars[i]->getWheel() << "\n"
 			  << " Current Position: " << cars[i]->getPosition() << "\n"
 			  << " Total Distance: " << cars[i]->getTotalDist() << "\n";
@@ -21,16 +21,16 @@ void printCars(Car *cars[], int size) {
 
 void init(Car *cars[], Person *persons[], int size) {
   for (int i = 0; i < size; i++) {
+	persons[i] = new Person(carConfigs[i].riderName);
 	cars[i] = new Car(
 		carConfigs[i].carName,
-		carConfigs[i].riderName,
+		persons[i],
 		carConfigs[i].engineType,
 		carConfigs[i].wheelType
 	);
-	persons[i] = new Person(carConfigs[i].riderName);
-	persons[i]->assignCar(*cars[i]);
+	cars[i]->setRide();
 
-	std::cout << "Car initialized : " << cars[i]->getRider() << " rides " << cars[i]->getName() << std::endl;
+	std::cout << "Car initialized : " << cars[i]->getRider()->getName() << " rides " << cars[i]->getName() << std::endl;
   }
 }
 

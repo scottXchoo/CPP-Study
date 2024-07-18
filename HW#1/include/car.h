@@ -3,17 +3,19 @@
 
 #include <string>
 
+class Person; // 상호 참조 문제를 위해 전방 선언(forward declaration)
+
 class Car {
  public:
-  // Car에 Person을 태우기 : rider
-  Car(std::string name, std::string rider, std::string engine, std::string wheel);
+  Car(std::string name, Person* rider, std::string engine, std::string wheel);
+  ~Car();
 
   bool ride;
-
   void move();
   bool getRide() const;
+  void setRide();
 
-  [[nodiscard]] std::string getRider() const;
+  [[nodiscard]] const Person* getRider() const;
   [[nodiscard]] std::string getName() const;
   [[nodiscard]] std::string getEngine() const;
   [[nodiscard]] std::string getWheel() const;
@@ -21,11 +23,9 @@ class Car {
   [[nodiscard]] int getPosition() const;
   [[nodiscard]] int getTotalDist() const;
 
-  ~Car();
-
  private:
   std::string name;
-  std::string rider;
+  Person* rider;
   std::string engine;
   std::string wheel;
   int position;
