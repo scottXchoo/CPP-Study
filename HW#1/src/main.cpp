@@ -5,14 +5,10 @@
 #include "car_config.h"
 #include "person.h"
 
-// isBiggerThan(car1) : 이런 식으로 함수를 만들어서 비교하는 것도 좋은 방법
-bool isComparePosition(Car *car1, Car *car2) {
-  // 연산자 오버로딩 : car끼리 비교 가능! => compare 함수 안 써도 됨
-  return car1->getPosition() < car2->getPosition();
-}
-
 void printCars(Car *cars[], int size) {
-  std::sort(cars, cars + size, isComparePosition);
+  std::sort(cars, cars + size, [](const Car* a, const Car* b) {
+	return *a > *b;
+  });
 
   for (int i = 0; i < size; i++) {
 	std::cout << "---------------------------" << std::endl;

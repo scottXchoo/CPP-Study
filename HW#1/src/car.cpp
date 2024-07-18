@@ -15,7 +15,7 @@ Car::Car(std::string name, std::string rider, std::string engine, std::string wh
 	  ride(false) {}
 
 void Car::move() {
-  if (!ride) return;
+  if (!getRide()) return;
 
   int distance = generateRandomNumber(minRandomNumber, maxRandomNumber);
   position += distance;
@@ -48,6 +48,10 @@ int Car::getPosition() const {
 
 int Car::getTotalDist() const {
   return totalMovingDistance;
+}
+
+bool operator > (const Car &car1, const Car &car2) {
+  return car1.getPosition() > car2.getPosition();
 }
 
 Car::~Car() = default;

@@ -32,4 +32,6 @@ class Car {
   int totalMovingDistance;
 };
 
+bool operator > (const Car &car1, const Car &car2);
+
 #endif // CAR_H
