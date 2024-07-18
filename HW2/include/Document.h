@@ -13,7 +13,12 @@ class Document {
   int published_year;
 
  public:
-  Document(int id, std::string category, std::string title, std::string author, std::string publisher, int published_year);
+  Document(int id,
+		   std::string category,
+		   std::string title,
+		   std::string author,
+		   std::string publisher,
+		   int published_year);
   ~Document();
 
   [[nodiscard]] int getId() const;

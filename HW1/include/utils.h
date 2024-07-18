@@ -1,6 +1,6 @@
-#ifndef UTILS_H_
-#define UTILS_H_
+#ifndef UTILS_H
+#define UTILS_H
 
 int generateRandomNumber(int min, int max);
 
-#endif // UTILS_H_
+#endif  // UTILS_H

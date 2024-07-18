@@ -1,12 +1,9 @@
-//
-// Created by 추교현 on 2024. 7. 18..
-//
+#ifndef UTILS_H
+#define UTILS_H
 
-#ifndef CPP_STUDY_HW_2_UTILS_UTILS_H_
-#define CPP_STUDY_HW_2_UTILS_UTILS_H_
+#include "Document.h"
 
-class utils {
+void printDocument(const Document &doc);
+bool containsQuery(const std::string &field, const std::string &query);
 
-};
-
-#endif //CPP_STUDY_HW_2_UTILS_UTILS_H_
+#endif  // UTILS_H
