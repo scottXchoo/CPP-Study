@@ -11,7 +11,7 @@ void showMenu() {
   std::cout << "5. Exit" << std::endl;
 }
 
-int mainController() {
+void mainController() {
   std::vector<Document> init_documents = {
 	  Document(1, "Book", "Java Manse", "Chu", "Apple", 2013),
 	  Document(2, "E-Book", "TypeScript Manse", "Kim", "Banana", 2018),
@@ -20,15 +20,16 @@ int mainController() {
 
   Library library(init_documents);
   int choice;
+  bool running = true;
 
-  while (true) {
+  while (running) {
 	std::cout << "------------------------" << std::endl;
 	std::cout << "------------------------" << std::endl;
 	std::cout << "------------------------" << std::endl;
 	showMenu();
 
 	std::cout << "-> Enter your choice: " << std::endl;
-	std::cin >> choice;  // getline
+	std::cin >> choice;
 	std::cin.ignore();
 
 	switch (choice) {
@@ -41,7 +42,8 @@ int mainController() {
 	  case 4: library.deleteDocument();
 		break;
 	  case 5: std::cout << "<Exit the program>" << std::endl;
-		return 0;  // return 한 것을 main에서 return 해야 됨. return 위치 잘못
+		running = false;
+		break;
 	  default: std::cout << "Invalid choice" << std::endl;
 		break;
 	}
@@ -50,4 +52,5 @@ int mainController() {
 
 int main() {
   mainController();
+  return 0;
 }
